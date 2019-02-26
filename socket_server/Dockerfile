@@ -4,4 +4,4 @@ ENV production yes
 COPY package.json .
 RUN yarn install
 COPY . .
-CMD yarn start
+CMD NODE_ENV=production yarn start

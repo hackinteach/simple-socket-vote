@@ -10,12 +10,12 @@ module.exports = ({io, data}) => {
     data[sender] = answer
     const reducer = outputReducer(data)
     io.emit("result", reducer)
-    res.json({status: "success", reducer})
+    res.json({status: "success"})
   })
 
   router.get('/', (req, res, next) => {
     const reducer = outputReducer(data)
-    res.json({status: "success", reducer})
+    res.json(reducer)
   })
   
   return router

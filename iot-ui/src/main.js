@@ -10,12 +10,12 @@ Vue.config.productionTip = false;
 const mixin = {
   data: function () {
     return {
-      socketio: io('http://localhost:3000/')
+      socketio: io('')
     }
   }
 };
 
-Vue.mixin(mixin)
+Vue.mixin(mixin);
 
 new Vue({
   render: h => h(App),

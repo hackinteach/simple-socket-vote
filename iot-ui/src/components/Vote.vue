@@ -3,28 +3,15 @@
         <v-container>
             <v-layout column pa-3 mb-2>
                 <v-container grid-list-lg>
-                    <v-layout row wrap>
+                    <v-layout wrap>
                         <template v-for="(vote,answer) in sample">
-                            <v-flex :key="answer">
-                                <v-card class="elevation-3">
-                                    <v-card-title primary align="center" class="title grey">{{answer}}</v-card-title>
-                                    <v-card-text class="headline" align="center">{{vote}}</v-card-text>
+                            <v-flex :key="answer" d-flex>
+                                <v-card class="elevation-3" max-width="300">
+                                    <v-card-title primary align="center" class="title grey text-truncate">{{answer}}</v-card-title>
+                                    <v-card-text class="headline text-truncate" align="center">{{vote}}</v-card-text>
                                 </v-card>
                             </v-flex>
                         </template>
-                        <!--<v-flex xs6>-->
-                            <!--<v-card color="green" dark class="elevation-0">-->
-                                <!--<v-card-title primary align="center" class="title">YES</v-card-title>-->
-                                <!--<v-card-text class="headline" align="center">{{YES}}</v-card-text>-->
-                            <!--</v-card>-->
-                        <!--</v-flex>-->
-                        <!--<v-flex xs6>-->
-                            <!--<v-card color="red" dark class="elevation-0">-->
-                                <!--<v-card-title primary align="center" class="title">NO</v-card-title>-->
-                                <!--<v-card-text class="headline" align="center">{{NO}}</v-card-text>-->
-                            <!--</v-card>-->
-                        <!--</v-flex>-->
-
                     </v-layout>
                     <v-layout row >
                         <v-flex d-flex xs12>
