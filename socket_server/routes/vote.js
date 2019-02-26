@@ -1,24 +1,20 @@
 var express = require('express');
 var router = express.Router();
+const outputReducer = require('../util/reducer')
 
 const _ = require('lodash');
 
 module.exports = ({io, data}) => {
-  router.post('/', (req, res, next) => {
+  router.post('/', (req, res) => {
     const {sender, answer} = req.body
     data[sender] = answer
-
-    const reducer = _.reduce(data, (result, value, key) => {
-      
-      if (value === false){
-        result['NO']++
-      } else if (value === true){
-        result['YES']++
-      }
-
-      return result
-    }, {'NO': 0, 'YES': 0})
+    const reducer = outputReducer(data)
     io.emit("result", reducer)
+    res.json({status: "success", reducer})
+  })
+
+  router.get('/', (req, res, next) => {
+    const reducer = outputReducer(data)
     res.json({status: "success", reducer})
   })
   

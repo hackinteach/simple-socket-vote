@@ -1,21 +1,23 @@
-const _ = require('lodash')
+
+const outputReducer = require('./util/reducer')
 
 module.exports = ({server, data}) => {
   const io = require('socket.io')(server);
+  
   io.on('connect', (client) => {
-    const reducer = _.reduce(data, (result, value, key) => {
-      
-      if (value === false){
-        result['NO']++
-      } else if (value === true){
-        result['YES']++
-      }
-
-      return result
-    }, {'NO': 0, 'YES': 0})
+    const a = outputReducer(data)
+    io.emit("result", a)
     
-    client.emit("result",reducer)
+    client.on('reset', (_c) => {
+      for (var key in data) {
+        delete data[key];
+    }
+      const reducer = outputReducer(data)
+      io.emit("result", reducer)
+    })
   });
+
+
 
   return io
 }
